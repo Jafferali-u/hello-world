@@ -213,8 +213,7 @@
     <url>http://github.com/jleetutorial/maven-project</url>
   </scm>
 
-         <plugins>
-     <plugin>
+         <plugin>
         <artifactId>Maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
