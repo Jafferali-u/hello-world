@@ -11,10 +11,10 @@ pipeline{
         }
         stage("code check"){
             steps{
-              withSonarQubeEnv(credentialsId: 'sonar-6') {
-                sh "mvn sonar:sonar"
-            }
-        }
+                withSonarQubeEnv(credentialsId: 'sonar') {
+                    sh "mvn sonar:sonar"
+                }
+             }
         }
     }
-  }
+}
