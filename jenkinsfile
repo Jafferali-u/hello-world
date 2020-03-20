@@ -1,27 +1,27 @@
-currentBuild.displayName = "Test_Pipeline-#"+currentBuild.number
 pipeline{ 
   agent any   
     environment{
         PATH = "/opt/maven3/bin:$PATH"
     }
   stages{
-        stage("mevan build"){
-            steps {
-                sh "mvn clean package"
-            }
-        }
-        stage("code check"){
+
+      stage("code check"){
             steps{
                 withSonarQubeEnv('sonar') {
                     sh "mvn sonar:sonar"
                 }
              }
         }
+        stage("mevan build"){
+            steps {
+                sh "mvn clean package"
+            }
+        }
         stage("deploy"){
             steps{
                 sshagent(['srcjenkins']) {
-                   sh """
-                    scp -o StrictHostKeyChecking=no webapp/target/webapp.war srcjenkins@172.31.57.87:/opt/docker/jenkinsfile-test/
+                    sh """
+                    scp -o StrictHostKeyChecking=no webapp/target/webapp.war srcjenkins@172.31.57.87:/opt/docker/jenkinsfile-test/                   
                     """
                 }
                 sshagent(['ansadmin_ansible']) {
@@ -33,3 +33,7 @@ pipeline{
         }
     }
 }
+
+
+
+ 
