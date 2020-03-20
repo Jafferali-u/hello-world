@@ -19,7 +19,10 @@ pipeline{
         stage("deploy"){
             steps{
                 sshagent(['srcjenkins']) {
-                    sh 'scp -o StrictHostKeyChecking=no target/*.war srcjenkins@172.31.57.87:/opt/docker/jenkinsfile-test/'
+                   sh """
+                    scp -o StrictHostKeyChecking=no target/*.war srcjenkins@172.31.57.87:/opt/docker/jenkinsfile-test/
+                    
+                    """
                 }
             }
         }
