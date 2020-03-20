@@ -1,0 +1,11 @@
+pipeline{ 
+  
+  stage{
+    stage("git check out"){
+        steps{
+        
+        }
+    }
+  }
+
+}
