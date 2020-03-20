@@ -1,4 +1,4 @@
-currentBuild.display = "Test_Pipeline-#"+current.number
+currentBuild.displayName = "Test_Pipeline-#"+current.number
 pipeline{ 
   agent any   
     environment{
