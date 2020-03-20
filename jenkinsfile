@@ -3,9 +3,8 @@ pipeline{
   stage{
     stage("git check out"){
         steps{
-        
+            git credentialsId: '09ac5285-9044-4459-bfe8-dde6868cc14e', url: 'https://github.com/Jafferali-u/hello-world.git'
         }
-    }
+      }
   }
-
 }
