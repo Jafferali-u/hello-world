@@ -9,9 +9,9 @@ pipeline{
                 sh "mvn clean package"
             }
         }
-        stage("deploy"){
-            sshagent(['srcjenkins']) {
-                sh 'scp -o StrictHostKeyChecking=no target/*.war srcjenkins@172.31.57.87:/opt/docker/jenkinsfile-test/'
+        stage("code check"){
+            withSonarQubeEnv(credentialsId: 'sonar-6') {
+                    sh "mvn sonar:sonar"
             }
         }
     }
