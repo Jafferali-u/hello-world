@@ -20,7 +20,7 @@ pipeline{
             steps{
                 sshagent(['srcjenkins']) {
                    sh """
-                    scp -o StrictHostKeyChecking=no target/*.war srcjenkins@172.31.57.87:/opt/docker/jenkinsfile-test/
+                    scp -o StrictHostKeyChecking=no webapp/target/webapp.war srcjenkins@172.31.57.87:/opt/docker/jenkinsfile-test/
                     
                     """
                 }
