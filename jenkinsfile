@@ -1,3 +1,4 @@
+currentBuild.display = "Test_Pipeline-#"+current.number
 pipeline{ 
   agent any   
     environment{
@@ -21,7 +22,6 @@ pipeline{
                 sshagent(['srcjenkins']) {
                    sh """
                     scp -o StrictHostKeyChecking=no webapp/target/webapp.war srcjenkins@172.31.57.87:/opt/docker/jenkinsfile-test/
-                    ssh -o StrictHostKeyChecking=no srcjenkins@172.31.57.87 docker build -t jenkins_pipeline_tomcat -f /opt/docker/jenkinsfile-test/Dockerfile .
                     """
                 }
             }
