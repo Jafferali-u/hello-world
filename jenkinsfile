@@ -6,21 +6,20 @@ pipeline{
     }
   stages{
 
-       stage("code check"){
+        stage("code check"){
             steps{
                 withSonarQubeEnv('sonar') {
                     sh "mvn sonar:sonar"
                 }
-                timeout(time: 2, unit: 'MINUTES') 
-                {
+                timeout(time: 2, unit: 'MINUTES') {
                     def qg = waitForQualityGate()
                     if (qg.status != 'OK') {
                         currentBuild.result = 'UNSTABLE'
-                   
-                       
-                        }
                     }
+                }
             }
+        }
+  
         stage("mevan build"){
             steps {
                 sh "mvn clean package"
