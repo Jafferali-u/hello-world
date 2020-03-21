@@ -18,13 +18,17 @@ pipeline{
                 sh "mvn clean package"
             }
         }
-        stage("deploy"){
+        stage("file share"){
             steps{
                 sshagent(['srcjenkins']) {
                     sh """
                     scp -o StrictHostKeyChecking=no webapp/target/webapp.war srcjenkins@172.31.57.87:/opt/docker/jenkinsfile-test/                   
                     """
                 }
+            }
+        }
+        stage("deploy"){
+            steps{
                 sshagent(['ansadmin_ansible']) {
                     sh """
                     ssh -o StrictHostKeyChecking=no ansadmin@172.31.63.160 ansible-playbook jenkins-pipeline-container.yaml
@@ -34,7 +38,3 @@ pipeline{
         }
     }
 }
-
-
-
- 
