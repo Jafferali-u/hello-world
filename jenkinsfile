@@ -52,27 +52,3 @@ pipeline{
         }
     }
 }
-
-
- stage("code check"){
-            steps{
-                withSonarQubeEnv('sonar') {
-                    sh "mvn sonar:sonar"
-                }
-                timeout(time: 2, unit: 'MINUTES') {
-                    def qg = waitForQualityGate()
-                    if (qg.status != 'OK') {
-                        currentBuild.result = 'UNSTABLE'
-                    }
-                }
-            }
-                
-
-
-                timeout(time: 2, unit: 'MINUTES') 
-                {
-                    def qg = waitForQualityGate()
-                    if (qg.status != 'OK') {
-                        currentBuild.result = 'UNSTABLE'
-                        }
-                    }
