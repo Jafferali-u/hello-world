@@ -37,9 +37,9 @@ pipeline{
         }
         stage("file share"){
             steps{
-                sshagent(['srcjenkins']) {
+                sshagent(['ansadmin_ansible']) {
                     sh """
-                    scp -o StrictHostKeyChecking=no webapp/target/webapp.war srcjenkins@172.31.57.87:/opt/docker/jenkinsfile-test/                   
+                    scp -o StrictHostKeyChecking=no webapp/target/webapp.war ansadmin@172.31.63.160:/opt/docker/jenkinsfile-test/                   
                     """
                 }
             }
